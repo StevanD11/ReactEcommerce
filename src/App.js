@@ -6,6 +6,7 @@ import HomeLayout from './layouts/HomeLayout';
 import Login from './layouts/Login';
 import Register from './layouts/Register';
 import AdminPrivateRoute from './components/AdminPrivateRoute';
+import AddProduct from './components/AddProduct';
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -27,8 +28,6 @@ function App() {
 
           <Route exact path="/" component={HomeLayout} />
 
-
-
           <Route path="/login">
             {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login />}
           </Route>
@@ -38,6 +37,8 @@ function App() {
           </Route>
 
           <AdminPrivateRoute path="/admin/dashboard" />
+
+          <Route path="/admin/addproduct" component={AddProduct} />
 
         </Switch>
       </Router>
