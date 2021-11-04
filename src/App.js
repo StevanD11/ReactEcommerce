@@ -40,6 +40,7 @@ function App() {
 
           <Route path="/admin/addproduct" component={AddProduct} />
 
+
         </Switch>
       </Router>
     </div>

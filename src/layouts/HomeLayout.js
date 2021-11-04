@@ -1,3 +1,4 @@
+import HomeProducts from "../components/HomeProducts";
 import Navbar from "../components/Navbar";
 
 const HomeLayout = () => {
@@ -5,6 +6,7 @@ const HomeLayout = () => {
 
         <div className="home-layout">
             <Navbar />
+            <HomeProducts />
         </div>
 
     );
