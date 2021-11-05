@@ -9,20 +9,15 @@ function ViewProducts() {
 
     useEffect(() => {
 
-        let mounted = true;
-
         axios.get(`/api/view-products`).then(res => {
-            if (res.data.status === 200 && mounted) {
+            if (res.data.status === 200) {
                 setProducts(res.data.products);
                 setLoading(false);
             }
         });
 
-        return () => {
-            mounted = false;
-        };
 
-    });
+    }, []);
 
     var prod = "";
 
@@ -38,7 +33,7 @@ function ViewProducts() {
                     <td>{product.description}</td>
                     <td className="text-center"><img src={`http://localhost:8000/${product.image}`} height="130px" width="130px" alt="pic" /></td>
                     <td>{product.price}</td>
-                    <td className="col-md-2"><Link to="edit-product" className="btn btn-warning" >Edit</Link>
+                    <td className="col-md-2"><Link to={`edit-product/${product.id}`} className="btn btn-warning" >Edit</Link>
                         <button type="button" className="btn btn-danger">Delete</button>
                     </td>
 
@@ -54,7 +49,7 @@ function ViewProducts() {
 
         <div className="view-product-container">
 
-            <table className="table table-bordered table-striped mt-3 p-3">
+            <table className="table table-bordered table-striped mt-3 mx-3">
                 <thead>
                     <tr>
                         <th>ID</th>

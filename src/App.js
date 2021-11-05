@@ -7,6 +7,7 @@ import Login from './layouts/Login';
 import Register from './layouts/Register';
 import AdminPrivateRoute from './components/AdminPrivateRoute';
 import AddProduct from './components/AddProduct';
+import EditProduct from './components/EditProduct';
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -39,7 +40,7 @@ function App() {
           <AdminPrivateRoute path="/admin/dashboard" />
 
           <Route path="/admin/addproduct" component={AddProduct} />
-
+          <Route path="/admin/edit-product/:id" component={EditProduct} />
 
         </Switch>
       </Router>
