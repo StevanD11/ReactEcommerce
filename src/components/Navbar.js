@@ -50,6 +50,7 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-logo">
                 <Link to="/">E-Commerce</Link>
+                <Link to="/convertor" className="mx-3">Convertor</Link>
             </div>
 
             <div className="navbar-list">

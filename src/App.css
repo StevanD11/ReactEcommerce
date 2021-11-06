@@ -50,7 +50,6 @@
     margin: 5px;
     box-sizing: border-box;
     text-align: center;
-    /*End Run Code Snippet output CSS*/
 }
 
 .product img {
@@ -61,7 +60,7 @@
 }
 
 .product img:hover {
-    transform: scale(1.07);
+    transform: scale(1.06);
 }
 
 .product button {
