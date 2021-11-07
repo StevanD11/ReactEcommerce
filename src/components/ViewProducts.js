@@ -24,7 +24,18 @@ function ViewProducts() {
     if (loading) {
         return <h1>Loading...</h1>
     }
+    function handleDelete(id) {
 
+        axios.delete(`/api/delete-product/${id}`).then(res => {
+            if (res.data.status === 200) {
+                alert(res.data.message);
+            }
+            else {
+                alert('Error while trying to delete product!');
+            }
+        });
+
+    }
     prod = products.map((product) => {
         return (
             <tr key={product.id}>
@@ -35,7 +46,7 @@ function ViewProducts() {
                 <td>{product.price}</td>
                 <td className="col-md-2">
                     <Link to={`edit-product/${product.id}`} className="btn btn-warning" >Edit</Link>
-                    <button type="button" className="btn btn-danger">Delete</button>
+                    <button type="button" onClick={() => handleDelete(product.id)} className="btn btn-danger">Delete</button>
                 </td>
             </tr>
         )
