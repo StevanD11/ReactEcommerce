@@ -9,7 +9,7 @@ import AdminPrivateRoute from './components/AdminPrivateRoute';
 import AddProduct from './components/AddProduct';
 import EditProduct from './components/EditProduct';
 import Convertor from './components/Convertor';
-
+import Search from './components/Search';
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
@@ -43,7 +43,7 @@ function App() {
           <Route path="/admin/addproduct" component={AddProduct} />
           <Route path="/admin/edit-product/:id" component={EditProduct} />
           <Route path="/convertor" component={Convertor} />
-
+          <Route path="/search" component={Search} />
         </Switch>
       </Router>
     </div>
