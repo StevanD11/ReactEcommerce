@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Navbar from './Navbar';
 
 function Search() {
 
     const [products, setProducts] = useState([]);
 
-    var prod = "";
     function search(key) {
         axios.get(`/api/search/${key}`).then(res => {
-            setProducts(res.data);
+            if (res.data.status === 200) {
+                setProducts(res.data.products)
+            }
+            else if (res.data.status === 404) {
+                alert(res.data.message);
+                setProducts([]);
+            }
         });
 
     }
@@ -16,10 +22,12 @@ function Search() {
 
     return (
         <div className="search-container">
-            
+
+            <Navbar />
+
             <div className="search">
                 <h3> Search </h3>
-                <input type="text" onChange={(e) => search(e.target.value)} className="form-control" />
+                <input type="text" onChange={(e) => search(e.target.value)} className="form-control" placeholder="Enter product name..." />
             </div>
 
 

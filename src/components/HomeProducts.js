@@ -32,19 +32,19 @@ function HomeProducts() {
 
         <div className="home-products-container">
 
-            <h1 className="text-center mt-3 mb-4">Welcome to our e-commerce shop! </h1>
+            <h1 className="text-center mt-4 mb-4">Welcome to the best sneaker shop! </h1>
 
             <div className="home-products">
                 {
                     products.map((product) => (
                         <div className="product" key={product.id}>
-                            <img src={`http://localhost:8000/${product.image}`} height="150px" width="150px" alt="pic" />
+                            <img src={`http://localhost:8000/${product.image}`} height="250px" width="250px" alt="pic" />
                             <br />
                             <label>Name: {product.name}</label>
                             <br />
-                            <label>Price: {product.price}€</label>
-                            <br />
                             <label>Description: {product.description}</label>
+                            <br />
+                            <label>Price: {product.price}€</label>
                             <br />
                             <button className="btn btn-danger btn-sm">Add to Cart</button>
                         </div>

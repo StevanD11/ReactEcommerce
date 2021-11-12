@@ -28,7 +28,6 @@ function Login() {
             password: loginInput.password
         }
 
-
         axios.get('/sanctum/csrf-cookie').then(response => {
             axios.post(`api/login`, data).then(res => {
                 if (res.data.status === 200) {
@@ -44,7 +43,7 @@ function Login() {
                     }
                 }
                 else if (res.data.status === 401) {
-                    alert('Greska', res.data.message);
+                    alert(res.data.message);
                 }
                 else {
                     setLoginInput({ ...loginInput, error_list: res.data.validation_errors });
@@ -60,7 +59,7 @@ function Login() {
             <Navbar />
             <div className="container py-5">
                 <div className="row justify-content-center">
-                    <div className="col-md-7 text-center">
+                    <div className="col-md-6 text-center">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group mb-3">
                                 <label>Email: </label>

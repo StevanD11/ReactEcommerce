@@ -6,6 +6,8 @@ function ViewProducts() {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [order, setOrder] = useState('asc');
+
 
     useEffect(() => {
 
@@ -53,6 +55,40 @@ function ViewProducts() {
     })
 
 
+    const sorting = (column) => {
+
+        var sorted = "";
+        if (order === 'asc') {
+            if (column !== 'price' && column !== 'id') {
+                sorted = [...products].sort((a, b) =>
+                    a[column].toLowerCase() > b[column].toLowerCase() ? 1 : -1
+                );
+            }
+            else {
+                sorted = [...products].sort((a, b) =>
+                    a[column] > b[column] ? 1 : -1
+                );
+            }
+            setProducts(sorted);
+            setOrder('desc');
+        }
+        if (order === 'desc') {
+            if (column !== 'price' && column !== 'id') {
+                sorted = [...products].sort((a, b) =>
+                    a[column].toLowerCase() < b[column].toLowerCase() ? 1 : -1
+                );
+            }
+            else {
+                sorted = [...products].sort((a, b) =>
+                    a[column] < b[column] ? 1 : -1
+                );
+            }
+            setProducts(sorted);
+            setOrder('asc');
+        }
+    }
+
+
 
     return (
 
@@ -61,11 +97,11 @@ function ViewProducts() {
             <table className="table table-bordered table-striped mt-3 mx-3">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
+                        <th onClick={() => sorting('id')}>ID</th>
+                        <th onClick={() => sorting('name')}>Name</th>
+                        <th onClick={() => sorting('description')}>Description</th>
                         <th>Image</th>
-                        <th>Price €</th>
+                        <th onClick={() => sorting('price')}>Price €</th>
                         <th>Action</th>
                     </tr>
                 </thead>

@@ -31,6 +31,7 @@ function Convertor() {
                 document.getElementById('res').innerHTML = response.old_amount + " " + response.old_currency + " = " + response.new_amount + " " + response.new_currency;
             })
             .catch(err => {
+                alert("There was a conversion error!");
                 console.error(err);
             });
 
@@ -48,7 +49,7 @@ function Convertor() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group mb-3">
                                 <label>Amount: </label>
-                                <input type="text" name="amount" onChange={handleInput} value={input.amount} className="form-control  text-center" />
+                                <input type="number" name="amount" onChange={handleInput} value={input.amount} className="form-control  text-center" />
                             </div>
                             <div className="form-group mb-3">
                                 <label>From: </label>

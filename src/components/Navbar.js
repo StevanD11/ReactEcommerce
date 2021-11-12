@@ -49,15 +49,12 @@ function Navbar() {
 
         <nav className="navbar">
             <div className="navbar-logo">
-                <Link to="/">E-Commerce</Link>
+                <Link to="/">Home</Link>
                 <Link to="/convertor" className="mx-3">Convertor</Link>
                 <Link to="/search" className="max-3">Search</Link>
             </div>
 
             <div className="navbar-list">
-                <div className="nav-item">
-                    <Link to="/">Home</Link>
-                </div>
                 {authVisible}
             </div>
         </nav>

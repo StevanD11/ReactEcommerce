@@ -32,9 +32,7 @@
     margin-left: 20px;
 }
 
-.navbar-logo {
-    margin-left: 30px;
-}
+
 
 
 .home-products {
@@ -82,4 +80,10 @@
     width: 300px;
     height: 37px;
     margin-top: 30px;
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

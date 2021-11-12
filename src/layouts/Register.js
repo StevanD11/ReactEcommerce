@@ -34,6 +34,7 @@ function Register() {
                     history.push('/');
                 }
                 else {
+                    alert('Registration error!')
                     setRegister({ ...register, error_list: res.data.validation_errors });
                 }
             });
