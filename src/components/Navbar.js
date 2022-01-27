@@ -1,11 +1,10 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import App from '../App.css';
 
 
 function Navbar() {
 
-    const history = useHistory();
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -14,8 +13,9 @@ function Navbar() {
             if (res.data.status === 200) {
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_name');
-                alert('You are logged out!');
-                history.push('/');
+                localStorage.removeItem('role');
+                alert('Logout uspešan!');
+                window.location.href = "/";
             }
         });
 
@@ -25,10 +25,10 @@ function Navbar() {
     if (!localStorage.getItem('auth_token')) {
         authVisible = (
             <div className="navbar-list">
-                <div className="nav-item">
-                    <Link to="/register">Register</Link>
+                <div className="nav-item mt-1">
+                    <Link to="/register">Registracija</Link>
                 </div >
-                <div className="nav-item">
+                <div className="nav-item mt-1">
                     <Link to="/login">Login</Link>
                 </div>
             </div>
@@ -37,24 +37,32 @@ function Navbar() {
     else {
 
         authVisible = (
-            <div className="nav-item">
-                <button type="button" onClick={handleLogout} className="btn btn-warning btn-sm">Logout</button>
+            <div>
+                <div className="nav-item">
+                    <button type="button" onClick={handleLogout} className="btn btn-danger btn-sm">Logout</button>
+                </div>
+
             </div>
         );
     }
 
+    let dashboard = <Link to="/admin/dashboard" className="max-3 mx-3">Dashboard</Link>
 
 
     return (
 
         <nav className="navbar">
             <div className="navbar-logo">
-                <Link to="/">Home</Link>
-                <Link to="/convertor" className="mx-3">Convertor</Link>
-                <Link to="/search" className="max-3">Search</Link>
+                <Link to="/">Početna</Link>
+                <Link to="/convertor" className="mx-3">Konvertor</Link>
+                <Link to="/search" className="max-3">Pretraga</Link>
+                {localStorage.getItem('role') === 'admin' && dashboard}
             </div>
 
             <div className="navbar-list">
+                <div className="nav-item mt-1">
+                    <Link to="/cart">Korpa</Link>
+                </div>
                 {authVisible}
             </div>
         </nav>

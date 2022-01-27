@@ -7,13 +7,15 @@ import { useHistory } from 'react-router-dom';
 function Login() {
 
     const history = useHistory();
-
     const [loginInput, setLoginInput] = useState({
         email: '',
         password: '',
-        error_list: []
     });
 
+
+    String.prototype.isEmpty = function () {
+        return (this.length === 0 || !this.trim());
+    };
 
     const handleInput = (e) => {
         e.persist();
@@ -22,6 +24,11 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (loginInput.email.isEmpty() || loginInput.password.isEmpty()) {
+            alert('Sva polja moraju biti popunjena!')
+            return;
+        }
 
         const data = {
             email: loginInput.email,
@@ -33,20 +40,19 @@ function Login() {
                 if (res.data.status === 200) {
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.username);
+                    localStorage.setItem('role', res.data.role);
+
                     if (res.data.role === 'admin') {
-                        alert("You are logged in!");
+                        alert("Uspešno ste se ulogovali!");
                         history.push('/admin/dashboard');
                     }
                     else {
-                        alert("You are logged in!");
+                        alert("Uspešno ste se ulogovali!");
                         history.push('/');
                     }
                 }
                 else if (res.data.status === 401) {
                     alert(res.data.message);
-                }
-                else {
-                    setLoginInput({ ...loginInput, error_list: res.data.validation_errors });
                 }
             });
         });
@@ -63,13 +69,11 @@ function Login() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group mb-3">
                                 <label>Email: </label>
-                                <input type="text" name="email" onChange={handleInput} value={loginInput.email} className="form-control" />
-                                <label>{loginInput.error_list.email}</label>
+                                <input type="email" name="email" onChange={handleInput} value={loginInput.email} className="form-control" />
                             </div>
                             <div className="form-group mb-3">
-                                <label>Password: </label>
+                                <label>Lozinka: </label>
                                 <input type="password" name="password" onChange={handleInput} value={loginInput.password} className="form-control" />
-                                <label>{loginInput.error_list.password}</label>
                             </div>
                             <div className="form-group mb-3">
                                 <button type="submit" className="btn btn-success btn-lg">Login</button>
@@ -79,7 +83,6 @@ function Login() {
                 </div>
             </div>
         </div>
-
     );
 }
 

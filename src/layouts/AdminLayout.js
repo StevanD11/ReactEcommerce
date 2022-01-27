@@ -7,8 +7,8 @@ const AdminLayout = () => {
 
         <div className="admin-layout">
             <Navbar />
-            <h1 className="text-center mt-3"> Admin page </h1>
-            <Link to="/admin/addproduct"><button type="button" className="btn btn-primary btn-lg ms-3">Add new product</button></Link>
+            <h1 className="text-center mt-3"> Admin dashboard </h1>
+            <Link to="/admin/addproduct"><button type="button" id="dugmence" className="btn btn-primary btn-lg">Novi proizvod</button></Link>
             <ViewProducts />
         </div>
 

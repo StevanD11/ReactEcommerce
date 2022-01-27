@@ -10,8 +10,11 @@ function Register() {
         name: '',
         email: '',
         password: '',
-        error_list: ''
     });
+
+    String.prototype.isEmpty = function () {
+        return (this.length === 0 || !this.trim());
+    };
 
     const handleInput = (e) => {
         e.persist();
@@ -20,6 +23,12 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (register.name.isEmpty() || register.email.isEmpty() || register.password.isEmpty()) {
+            alert('Sva polja moraju biti popunjena!')
+            return;
+        }
+
 
         const data = {
             name: register.name,
@@ -33,18 +42,15 @@ function Register() {
                     alert(res.data.message);
                     history.push('/');
                 }
-                else {
-                    alert('Registration error!')
-                    setRegister({ ...register, error_list: res.data.validation_errors });
+
+                else if (res.data.status === 404) {
+                    alert('Greška prilikom registracije!'.res.data.message);
                 }
             });
         });
-
-
     }
 
     return (
-
         <div>
             <Navbar />
             <div className="container py-5">
@@ -52,19 +58,16 @@ function Register() {
                     <div className="col-md-6 text-center">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group mb-3">
-                                <label>Name: </label>
-                                <input type="text" name="name" onChange={handleInput} value={register.name} className="form-control" />
-                                <span>{register.error_list.name}</span>
+                                <label>Ime: </label>
+                                <input type="text" name="name" onChange={handleInput} value={register.name} className="form-control text-center" />
                             </div>
                             <div className="form-group mb-3">
                                 <label>E-mail: </label>
-                                <input type="text" name="email" onChange={handleInput} value={register.email} className="form-control" />
-                                <span>{register.error_list.email}</span>
+                                <input type="email" name="email" onChange={handleInput} value={register.email} className="form-control text-center" />
                             </div>
                             <div className="form-group mb-3">
-                                <label>Password: </label>
-                                <input type="password" name="password" onChange={handleInput} value={register.password} className="form-control" />
-                                <span>{register.error_list.password}</span>
+                                <label>Lozinka: </label>
+                                <input type="password" name="password" onChange={handleInput} value={register.password} className="form-control text-center" />
                             </div>
                             <div className="form-group mb-3">
                                 <button type="submit" className="btn btn-success btn-lg">Register</button>
@@ -74,7 +77,6 @@ function Register() {
                 </div>
             </div>
         </div>
-
     );
 }
 

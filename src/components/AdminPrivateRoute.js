@@ -15,35 +15,21 @@ function AdminPrivateRoute({ ...rest }) {
             if (res.status === 200) {
                 setAuthenticated(true);
             }
+
+
             setLoading(false);
-        });
-
-        return () => {
-            setAuthenticated(false);
-        };
+        })
+            .catch(function (error) {
+                if (error.response.status === 401) {
+                    alert('Morate biti ulogovani da biste pristupili ovoj stranici!');
+                    history.push('/login');
+                }
+                if (error.response.status === 403) {
+                    alert('Samo Admin ima pristup ovoj stranici!');
+                    setLoading(false);
+                }
+            });
     }, []);
-
-
-
-    axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
-        if (err.response.status === 401) {
-            alert(err.response.data.message);
-            history.push('/login');
-        }
-        return Promise.reject(err);
-    });
-
-
-    axios.interceptors.response.use(function (response) {
-        return response;
-    }, function (error) {
-        if (error.response.status === 403) {
-            alert(error.response.data.message);
-            history.push('/');
-        }
-        return Promise.reject(error);
-    });
-
 
     if (loading) {
         return <h1>Loading...</h1>;
@@ -55,11 +41,9 @@ function AdminPrivateRoute({ ...rest }) {
                 Authenticated ?
                     (<AdminLayout />) :
                     (<Redirect to={{ pathname: "/login", state: { from: location } }} />)
-
             }
         />
     );
-
 }
 
 export default AdminPrivateRoute;

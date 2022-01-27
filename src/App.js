@@ -10,7 +10,10 @@ import AddProduct from './components/AddProduct';
 import EditProduct from './components/EditProduct';
 import Convertor from './components/Convertor';
 import Search from './components/Search';
+import Cart from './components/Cart';
+
 axios.defaults.baseURL = "http://localhost:8000";
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
 
@@ -20,6 +23,7 @@ axios.interceptors.request.use(function (config) {
   config.headers.Authorization = token ? `Bearer ${token}` : '';
   return config;
 });
+
 
 
 function App() {
@@ -44,6 +48,7 @@ function App() {
           <Route path="/admin/edit-product/:id" component={EditProduct} />
           <Route path="/convertor" component={Convertor} />
           <Route path="/search" component={Search} />
+          <Route path="/cart" component={Cart} />
         </Switch>
       </Router>
     </div>
