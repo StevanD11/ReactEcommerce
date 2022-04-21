@@ -201,8 +201,8 @@ function Cart() {
                                     <input type="text" className="form-control" name="adresa" onChange={handleChange} value={data.adresa} />
                                 </div>
                                 <div className="col-md-6 mb-3" >
-                                    <label className="form-label">Naćin plaćanja:</label>
-                                    <select type="text" className="form-select" name="placanje" onChange={handleChange} value={data.placanje} >
+                                    <label className="form-label">Način plaćanja:</label>
+                                    <select type="text" id='placanje' className="form-select" name="placanje" onChange={handleChange} value={data.placanje} >
                                         <option disabled value={''}>Izaberi</option>
                                         <option value={'gotovina'}>Gotovina</option>
                                         <option value={'kartica'}>Kartica</option>

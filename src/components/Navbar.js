@@ -14,10 +14,15 @@ function Navbar() {
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_name');
                 localStorage.removeItem('role');
-                alert('Logout uspešan!');
+                alert('Uspešno ste se odjavili sa sistema!');
                 window.location.href = "/";
             }
-        });
+        }).catch(function (error) {
+            if (error.response.status === 500) {
+                alert('Greška pri odjavljivanju sa sistema!');
+            }
+
+        });;
 
     }
 
@@ -29,7 +34,7 @@ function Navbar() {
                     <Link to="/register">Registracija</Link>
                 </div >
                 <div className="nav-item mt-1">
-                    <Link to="/login">Login</Link>
+                    <Link to="/login">Prijava</Link>
                 </div>
             </div>
         );
@@ -56,6 +61,7 @@ function Navbar() {
                 <Link to="/">Početna</Link>
                 <Link to="/convertor" className="mx-3">Konvertor</Link>
                 <Link to="/search" className="max-3">Pretraga</Link>
+                <Link to="/contact" className="mx-3">Kontakt</Link>
                 {localStorage.getItem('role') === 'admin' && dashboard}
             </div>
 

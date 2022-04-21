@@ -76,7 +76,7 @@ function Login() {
                                 <input type="password" name="password" onChange={handleInput} value={loginInput.password} className="form-control" />
                             </div>
                             <div className="form-group mb-3">
-                                <button type="submit" className="btn btn-success btn-lg">Login</button>
+                                <button type="submit" className="btn btn-success btn-lg">Prijava</button>
                             </div>
                         </form>
                     </div>

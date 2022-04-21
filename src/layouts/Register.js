@@ -43,10 +43,11 @@ function Register() {
                     history.push('/');
                 }
 
-                else if (res.data.status === 404) {
-                    alert('Greška prilikom registracije!'.res.data.message);
+                if (res.data.status === 404) {
+                    alert('Greška prilikom registracije! Uneti email već postoji u bazi podataka!');
                 }
-            });
+
+            })
         });
     }
 
@@ -70,7 +71,7 @@ function Register() {
                                 <input type="password" name="password" onChange={handleInput} value={register.password} className="form-control text-center" />
                             </div>
                             <div className="form-group mb-3">
-                                <button type="submit" className="btn btn-success btn-lg">Register</button>
+                                <button type="submit" className="btn btn-success btn-lg">Registruj se</button>
                             </div>
                         </form>
                     </div>

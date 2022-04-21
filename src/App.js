@@ -11,6 +11,7 @@ import EditProduct from './components/EditProduct';
 import Convertor from './components/Convertor';
 import Search from './components/Search';
 import Cart from './components/Cart';
+import Contact from './components/Contact';
 
 axios.defaults.baseURL = "http://localhost:8000";
 
@@ -49,6 +50,8 @@ function App() {
           <Route path="/convertor" component={Convertor} />
           <Route path="/search" component={Search} />
           <Route path="/cart" component={Cart} />
+          <Route path="/contact" component={Contact} />
+
         </Switch>
       </Router>
     </div>

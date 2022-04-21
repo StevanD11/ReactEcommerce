@@ -12,7 +12,12 @@ function ViewProducts() {
             if (res.data.status === 200) {
                 setProducts(res.data.products);
             }
-        });
+        }).catch(function (error) {
+            if (error.response.status === 500) {
+                alert('Sistem ne može da vrati proizvode!');
+            }
+
+        });;
     }, []);
 
     var prod = "";
@@ -44,8 +49,8 @@ function ViewProducts() {
                 <td>{p.pol}</td>
                 <td>{p.stanje}</td>
                 <td className="col-md-2">
-                    <Link to={`edit-product/${p.id}`} className="btn btn-warning mx-1">Edit</Link>
-                    <button type="button" onClick={() => handleDelete(p.id)} className="btn btn-danger">Delete</button>
+                    <Link to={`edit-product/${p.id}`} className="btn btn-warning mx-1">Izmeni</Link>
+                    <button type="button" onClick={() => handleDelete(p.id)} className="btn btn-danger">Obriši</button>
                 </td>
             </tr>
         )

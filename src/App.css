@@ -247,7 +247,8 @@
 
 
 .grupa {
-    padding-left: 380px;
+    margin-top: -50px;
+    padding-left: 375px;
 }
 
 #dugme {
@@ -295,4 +296,18 @@
     margin-top: 40px;
     width: 500px;
     margin-left: 100px;
+}
+
+.forma-div{
+    width: 550px;
+    margin-top: 50px;
+    margin-left: 680px;
+}
+
+#txtarea{
+    height: 140px;
+}
+
+#placanje {
+    height: 50px;
 }

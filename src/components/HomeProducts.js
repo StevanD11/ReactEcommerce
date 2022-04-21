@@ -14,7 +14,13 @@ function HomeProducts() {
             if (res.data.status === 200) {
                 setProducts(res.data.products);
             }
-        });
+
+        }).catch(function (error) {
+            if (error.response.status === 500) {
+                alert('Sistem ne može da vrati proizvode!');
+            }
+
+        });;
     }, []);
 
 
